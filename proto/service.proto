@@ -1,0 +1,21 @@
+// protocol buffer sysntax version
+syntax = "proto3";
+
+package proto;
+
+// data structure for our request
+message Request {
+    int64 a = 1; // 1 is NOT assigned to a! It's the size in bytes the data type should have!!!
+    int64 b = 2; // 2 is NOT assigned to a! It's the size in bytes the data type should have!!!
+}
+
+// data structure for our response
+message Response {
+    int64 result = 1;
+}
+
+// service that handles requests and create responses
+service AddService {
+    rpc Add(Request) returns (Response);
+    rpc Multiply(Request) returns (Response);
+}
