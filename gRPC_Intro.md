@@ -63,6 +63,8 @@ service AddService {
 
 Now that we have created our protoc defintion and installed the protoc compiler, we can compile proto-file to `go` code.
 
-`sandbox$ protoc service.proto`
+`sandbox$ protoc --proto_path=proto --proto_path=third_party --go_out=plugins=grpc:proto service.proto`
+
+**See also script `run_protoc.sh` !**
 
 This will generate a file `service.pb.go` which includes real go code. This is our API code which we now can use for our application i.e. a web service.
