@@ -2,9 +2,9 @@
 
 ## _Protocol Buffers_
 
-1. https://developers.google.com/protocol-buffers/
+* https://developers.google.com/protocol-buffers/
 
-## _Installation_
+## 1. _Installation_
 
 #### Download and Install Protocol Buffer Compiler (`protoc`)
 
@@ -19,7 +19,7 @@ libprotoc 3.7.1.
 ```
 
 
-#### Download and Install grpc packages
+#### Download and Install golang dependent grpc packages
 
 Here we are using `golang`, so we install the required `golang` packages for gRPC.
 
@@ -29,7 +29,13 @@ Here we are using `golang`, so we install the required `golang` packages for gRP
 2. To use the protoc defintion and generating code out of that:
 `go get -u github.com/golang/protobuf/protoc-gen-go`
 
-Protocol Buffer Basics: Go -  https://developers.google.com/protocol-buffers/docs/gotutorial
+
+
+## 2. Start writing `protoc` definition
+
+* Protocol Buffer Language Guide https://developers.google.com/protocol-buffers/docs/proto
+* Protocol Buffer Basics: Go -  https://developers.google.com/protocol-buffers/docs/gotutorial
+* You can use VSCode plugin to create protoc files:  https://marketplace.visualstudio.com/itemdetails?itemName=zxh404.vscode-proto3
 
 A simple example of a protoc file looks like that:
 ```go
@@ -56,16 +62,11 @@ service AddService {
 }
 ```
 
-## Start writing `protoc` definition
+## 3. Compiling `protoc` defintion
 
-* Protocol Buffer Language Guide https://developers.google.com/protocol-buffers/docs/proto
-* You can use VSCode plugin https://marketplace.visualstudio.com/itemdetails?itemName=zxh404.vscode-proto3
+When you've executed 1. and 2., you can compile proto-file to `go` code.
 
-## Compiling `protoc` defintion
-
-Now that we have created our protoc defintion and installed the protoc compiler, we can compile proto-file to `go` code.
-
-`sandbox$ protoc --proto_path=proto --proto_path=third_party --go_out=plugins=grpc:proto service.proto`
+`sandbox$ protoc --proto_path=<folder of your protoc definition file> --proto_path=<location of google protoc third party code>  --go_out=plugins=grpc:proto service.proto`
 
 **See also script `run_protoc.sh` !**
 
