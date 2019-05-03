@@ -71,3 +71,6 @@ When you've executed 1. and 2., you can compile proto-file to `go` code.
 **See also script `run_protoc.sh` !**
 
 This will generate a file `service.pb.go` which includes real go code. This is our API code which we now can use for our application i.e. a web service.
+
+## 4. Using generated protoc code
+Now that we have the API code (see 3.) we can use it in our application. In our case we will create a `server.go` which will implement the `Add` and `Multiply` interface. A file `client.go` will call these functions via gRPC. We will implement the client as an REST API based on `gin/gonic`. See the full code in server/client folders.
