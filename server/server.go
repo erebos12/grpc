@@ -17,30 +17,27 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	srv := grpc.NewServer()
 	proto.RegisterAddServiceServer(srv, &server{})
 	reflection.Register(srv)
-
-	if e := srv.Serve(listener); e != nil {
+	log.Printf("Server is running now...")
+	e := srv.Serve(listener)
+	if e != nil {
 		panic(e)
 	}
-	log.Printf("Running server now...")
 
 }
 
 func (s *server) Add(ctx context.Context, request *proto.Request) (*proto.Response, error) {
 	a, b := request.GetA(), request.GetB()
-
 	result := a + b
-
+	log.Printf("Received request for adding numbers: %d + %d = %d", a,b, result)
 	return &proto.Response{Result: result}, nil
 }
 
 func (s *server) Multiply(ctx context.Context, request *proto.Request) (*proto.Response, error) {
 	a, b := request.GetA(), request.GetB()
-
 	result := a * b
-
+	log.Printf("Received request for multiply numbers: %d * %d = %d", a,b, result)
 	return &proto.Response{Result: result}, nil
 }
