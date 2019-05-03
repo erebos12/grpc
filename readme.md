@@ -9,9 +9,11 @@
 #### Download and Install Protocol Buffer Compiler (`protoc`)
 
 Download and install from https://github.com/protocolbuffers/protobuf/releases.
-  -  create soft link ln -s /usr/local/opt/protoc-3.7.1-osx-x86_64/bin/protoc protoc
 
+After download and unpacking zip-file to your preferred location, create a link:
 ```
+// creating a softlink
+sandbox$ ln -s /usr/local/opt/protoc-3.7.1-osx-x86_64/bin/protoc protoc
 sandbox$ protoc --version
 libprotoc 3.7.1.
 ```
