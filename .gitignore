@@ -2,3 +2,5 @@
 proto/service\.pb\.go
 
 service\.pb\.go
+
+\.idea/
