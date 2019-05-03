@@ -1,8 +1,8 @@
 # gRPC - https://grpc.io/
 
-## _Protocol Buffers_
+## 0. _Protocol Buffers_
 
-* https://developers.google.com/protocol-buffers/
+* https://developers.google.com/protocol-buffers/docs/overview
 
 ## 1. _Installation_
 
@@ -13,8 +13,8 @@ Download and install from https://github.com/protocolbuffers/protobuf/releases.
 After download and unpacking zip-file to your preferred location, create a link:
 ```
 // creating a softlink
-sandbox$ ln -s /usr/local/opt/protoc-3.7.1-osx-x86_64/bin/protoc protoc
-sandbox$ protoc --version
+$ ln -s /usr/local/opt/protoc-3.7.1-osx-x86_64/bin/protoc protoc
+$ protoc --version
 libprotoc 3.7.1.
 ```
 
