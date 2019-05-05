@@ -1,8 +1,12 @@
 # gRPC - https://grpc.io/
 
-![gRPC Workflow](grpc_workflow.jpg)
+## Workflow
 
-## 1. ProtoBuf Definitions
+<table><tr><td>
+<img align="center" src="pics/02.png" title="gRPC Layer Model" width="600">
+</td></tr></table>
+
+### 1. ProtoBuf Definitions
 * binary encoding format that allows you to specify a schema for your data using a specification language
 * involves an interface description language (IDL) that describes the structure of data
 * is implemented for various languages: Java, C, Go, JS etc.
@@ -36,11 +40,11 @@ service AddService {
 * Protocol Buffer Language Guide https://developers.google.com/protocol-buffers/docs/proto
 
 
-## 2. Compile ProtoBuf file
+### 2. Compile ProtoBuf file
 
 The ProtoBuf Definitions (`.proto` files) needs now to be compiled into your target language (here `golang`). Therefore we need to install the ProtoBuf compiler `protoc`.
 
-### Download and Install Protocol Buffer Compiler (`protoc`)
+#### Download and Install Protocol Buffer Compiler (`protoc`)
 
 Download and install from https://github.com/protocolbuffers/protobuf/releases.
 
@@ -52,7 +56,7 @@ $ protoc --version
 libprotoc 3.7.1.
 ```
 
-### Download and Install golang dependent grpc packages
+#### Download and Install golang dependent grpc packages
 
 Here we are using `golang`, so we install the required `golang` packages for gRPC.
 
@@ -62,7 +66,7 @@ Here we are using `golang`, so we install the required `golang` packages for gRP
 2. To use the protoc defintion and generating code out of that:
 `go get -u github.com/golang/protobuf/protoc-gen-go`
 
-### Generate code based on proto file
+#### Generate code based on proto file
 After successful installation of the ProtoBuf compiler, we can use it now:
 
 `sandbox$ protoc --proto_path=<folder of your protoc definition file> --proto_path=<location of google protoc third party code>  --go_out=plugins=grpc:proto service.proto`
@@ -72,5 +76,11 @@ After successful installation of the ProtoBuf compiler, we can use it now:
 This will generate a file `service.pb.go` which includes real go code. This is our API code which we now can use for our application i.e. a web service.
 
 
-## 3. Implement gRPC server/client
+### 3. Implement gRPC server/client
 Now that we have the gRPC stub code (`service.pb.go`) we can use it in our application. In our case we will create a `server.go` file (**gRPC Server**) which will implement the `Add` and `Multiply` interface. A file `client.go` (**gRPC Client**) will call these functions via gRPC. We will implement the client as an REST API based on `gin/gonic` for convenient reasons to call the functions via browser. See the full code in server/client folders.
+
+## Layer Model
+
+<table><tr><td>
+<img align="center" src="pics/01.png" title="gRPC Layer Model" width="600">
+</td></tr></table>
