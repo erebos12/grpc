@@ -2,45 +2,12 @@
 
 ![gRPC Workflow](grpc_workflow.jpg)
 
+## 1. ProtoBuf Definitions
+* binary encoding format that allows you to specify a schema for your data using a specification language
+* involves an interface description language (IDL) that describes the structure of data
+* is implemented for various languages: Java, C, Go, JS etc.
+* definition of your data and services in `.proto` files
 
-## 0. _Protocol Buffers_
-
-* https://developers.google.com/protocol-buffers/docs/overview
-
-## 1. _Installation_
-
-#### Download and Install Protocol Buffer Compiler (`protoc`)
-
-Download and install from https://github.com/protocolbuffers/protobuf/releases.
-
-After download and unpacking zip-file to your preferred location, create a link:
-```
-// creating a softlink
-$ ln -s /usr/local/opt/protoc-3.7.1-osx-x86_64/bin/protoc protoc
-$ protoc --version
-libprotoc 3.7.1.
-```
-
-
-#### Download and Install golang dependent grpc packages
-
-Here we are using `golang`, so we install the required `golang` packages for gRPC.
-
-1. The main package for grpc:
-`go get -u google.golang.org/grpc`
-
-2. To use the protoc defintion and generating code out of that:
-`go get -u github.com/golang/protobuf/protoc-gen-go`
-
-
-
-## 2. Start writing `protoc` definition
-
-* Protocol Buffer Language Guide https://developers.google.com/protocol-buffers/docs/proto
-* Protocol Buffer Basics: Go -  https://developers.google.com/protocol-buffers/docs/gotutorial
-* You can use VSCode plugin to create protoc files:  https://marketplace.visualstudio.com/itemdetails?itemName=zxh404.vscode-proto3
-
-A simple example of a protoc file looks like that:
 ```go
 // protocol buffer sysntax version
 syntax = "proto3";
@@ -65,9 +32,38 @@ service AddService {
 }
 ```
 
-## 3. Compiling `protoc` defintion
+* see also  https://developers.google.com/protocol-buffers/docs/overview
+* Protocol Buffer Language Guide https://developers.google.com/protocol-buffers/docs/proto
 
-When you've executed 1. and 2., you can compile proto-file to `go` code.
+
+## 2. Compile ProtoBuf file
+
+The ProtoBuf Definitions (`.proto` files) needs now to be compiled into your target language (here `golang`). Therefore we need to install the ProtoBuf compiler `protoc`.
+
+### Download and Install Protocol Buffer Compiler (`protoc`)
+
+Download and install from https://github.com/protocolbuffers/protobuf/releases.
+
+After download and unpacking zip-file to your preferred location, create a link:
+```
+// creating a softlink
+$ ln -s /usr/local/opt/protoc-3.7.1-osx-x86_64/bin/protoc protoc
+$ protoc --version
+libprotoc 3.7.1.
+```
+
+### Download and Install golang dependent grpc packages
+
+Here we are using `golang`, so we install the required `golang` packages for gRPC.
+
+1. The main package for grpc:
+`go get -u google.golang.org/grpc`
+
+2. To use the protoc defintion and generating code out of that:
+`go get -u github.com/golang/protobuf/protoc-gen-go`
+
+### Generate code based on proto file
+After successful installation of the ProtoBuf compiler, we can use it now:
 
 `sandbox$ protoc --proto_path=<folder of your protoc definition file> --proto_path=<location of google protoc third party code>  --go_out=plugins=grpc:proto service.proto`
 
@@ -75,5 +71,6 @@ When you've executed 1. and 2., you can compile proto-file to `go` code.
 
 This will generate a file `service.pb.go` which includes real go code. This is our API code which we now can use for our application i.e. a web service.
 
-## 4. Using generated protoc code
-Now that we have the API code (see 3.) we can use it in our application. In our case we will create a `server.go` which will implement the `Add` and `Multiply` interface. A file `client.go` will call these functions via gRPC. We will implement the client as an REST API based on `gin/gonic`. See the full code in server/client folders.
+
+## 3. Implement gRPC server/client
+Now that we have the gRPC stub code (`service.pb.go`) we can use it in our application. In our case we will create a `server.go` file (**gRPC Server**) which will implement the `Add` and `Multiply` interface. A file `client.go` (**gRPC Client**) will call these functions via gRPC. We will implement the client as an REST API based on `gin/gonic` for convenient reasons to call the functions via browser. See the full code in server/client folders.
