@@ -1,5 +1,17 @@
 # gRPC - https://grpc.io/
 
+## Overview
+
+* gRPC is a high performance, open-source remote procedure call (RPC) framework that can run anywhere
+* It enables client and server applications to communicate transparently, and makes it easier to build connected systems
+* gRPC leverages HTTP/2.0 underneath
+* it uses an Interface Definition Language (IDL) specify a schema for your data and services
+
+<table><tr><td>
+<img align="center" src="pics/01.png" title="gRPC Layer Model" width="600">
+</td></tr></table>
+
+
 ## Workflow
 
 <table><tr><td>
@@ -78,9 +90,3 @@ This will generate a file `service.pb.go` which includes real go code. This is o
 
 ### 3. Implement gRPC server/client
 Now that we have the gRPC stub code (`service.pb.go`) we can use it in our application. In our case we will create a `server.go` file (**gRPC Server**) which will implement the `Add` and `Multiply` interface. A file `client.go` (**gRPC Client**) will call these functions via gRPC. We will implement the client as an REST API based on `gin/gonic` for convenient reasons to call the functions via browser. See the full code in server/client folders.
-
-## Layer Model
-
-<table><tr><td>
-<img align="center" src="pics/01.png" title="gRPC Layer Model" width="600">
-</td></tr></table>
