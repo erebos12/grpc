@@ -1,5 +1,8 @@
 # gRPC - https://grpc.io/
 
+![gRPC Workflow](grpc_workflow.jpg)
+
+
 ## 0. _Protocol Buffers_
 
 * https://developers.google.com/protocol-buffers/docs/overview
