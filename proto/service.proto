@@ -5,8 +5,9 @@ package proto;
 
 // data structure for our request
 message Request {
-    int64 a = 1; // 1 is NOT assigned to a! It's the size in bytes the data type should have!!!
-    int64 b = 2; // 2 is NOT assigned to a! It's the size in bytes the data type should have!!!
+    // unique numbers are used to identify your fields in the message binary format
+    int64 a = 1; // a is the 1st field in request
+    int64 b = 2; // b is the 2nd field in request
 }
 
 // data structure for our response
