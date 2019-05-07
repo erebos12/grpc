@@ -4,8 +4,10 @@
 
 * gRPC is a high performance, open-source remote procedure call (RPC) framework that can run anywhere
 * It enables client and server applications to communicate transparently, and makes it easier to build connected systems
-* gRPC leverages HTTP/2.0 underneath
+* gRPC leverages HTTP/2.0 underneath (see [HTTP/2][fa88e972])
 * it uses an Interface Definition Language (IDL) to specify a schema for your data and services, called **Protocol Buffer**
+
+  [fa88e972]: https://medium.com/@factoryhr/http-2-the-difference-between-http-1-1-benefits-and-how-to-use-it-38094fa0e95b "HTTP/2"
 
 <table><tr><td>
 <img align="center" src="pics/01.png" title="gRPC Layer Model" width="600">
