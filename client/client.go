@@ -77,12 +77,13 @@ func main() {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Parameter B"})
 			return
 		}
-		url := "http://localhost:4444/api/mult/"
+		url := "http://localhost:4444/rest/mult/"
 		url = url + strconv.FormatUint(a, 10) + "/"
 		url = url + strconv.FormatUint(b, 10)
-		log.Printf("REST: calling url %v", url)
+		//log.Printf("REST: calling url %v", url)
 		response, err := resty.R().Get(url)
-		if response == nil {
+		//log.Printf("REST: response from server %v", response)
+		if err == nil {
 			ctx.JSON(http.StatusOK, gin.H{"result": fmt.Sprint(response),
 			})
 		} else {
