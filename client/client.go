@@ -44,7 +44,7 @@ func main() {
 		}
 	})
 
-	g.GET("grpc//mult/:a/:b", func(ctx *gin.Context) {
+	g.GET("grpc/mult/:a/:b", func(ctx *gin.Context) {
 		a, err := strconv.ParseUint(ctx.Param("a"), 10, 64)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Parameter A"})
