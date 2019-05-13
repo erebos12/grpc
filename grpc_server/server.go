@@ -20,7 +20,7 @@ func main() {
 	srv := grpc.NewServer()
 	proto.RegisterAddServiceServer(srv, &server{})
 	reflection.Register(srv)
-	log.Printf("Server is running now...")
+	log.Printf("gRPC Server is running now. Waiting for requests...")
 	e := srv.Serve(listener)
 	if e != nil {
 		panic(e)
