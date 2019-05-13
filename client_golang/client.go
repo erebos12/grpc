@@ -9,7 +9,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
-	"gopkg.in/resty.v1"
 )
 
 func main() {
@@ -21,7 +20,7 @@ func main() {
 	client := proto.NewAddServiceClient(conn)
 
 	g := gin.Default()
-	g.GET("/grpc/add/:a/:b", func(ctx *gin.Context) {
+	g.GET("/golang/add/:a/:b", func(ctx *gin.Context) {
 		a, err := strconv.ParseUint(ctx.Param("a"), 10, 64)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Parameter A"})
@@ -44,7 +43,7 @@ func main() {
 		}
 	})
 
-	g.GET("grpc/mult/:a/:b", func(ctx *gin.Context) {
+	g.GET("golang/mult/:a/:b", func(ctx *gin.Context) {
 		a, err := strconv.ParseUint(ctx.Param("a"), 10, 64)
 		if err != nil {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Parameter A"})
@@ -60,31 +59,6 @@ func main() {
 		if response, err := client.Multiply(ctx, req); err == nil {
 			ctx.JSON(http.StatusOK, gin.H{
 				"result": fmt.Sprint(response.Result),
-			})
-		} else {
-			ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		}
-	})
-
-	g.GET("rest/mult/:a/:b", func(ctx *gin.Context) {
-		a, err := strconv.ParseUint(ctx.Param("a"), 10, 64)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Parameter A"})
-			return
-		}
-		b, err := strconv.ParseUint(ctx.Param("b"), 10, 64)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Parameter B"})
-			return
-		}
-		url := "http://localhost:4444/rest/mult/"
-		url = url + strconv.FormatUint(a, 10) + "/"
-		url = url + strconv.FormatUint(b, 10)
-		//log.Printf("REST: calling url %v", url)
-		response, err := resty.R().Get(url)
-		//log.Printf("REST: response from server %v", response)
-		if err == nil {
-			ctx.JSON(http.StatusOK, gin.H{"result": fmt.Sprint(response),
 			})
 		} else {
 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
