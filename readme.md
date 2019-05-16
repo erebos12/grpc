@@ -10,14 +10,14 @@
   [fa88e972]: https://medium.com/@factoryhr/http-2-the-difference-between-http-1-1-benefits-and-how-to-use-it-38094fa0e95b "HTTP/2"
 
 <table><tr><td>
-<img align="center" src="pics/01.png" title="gRPC Layer Model" width="600">
+<img align="center" src="pics/gRPC_layers.png" title="gRPC Layer Model" width="600">
 </td></tr></table>
 
 
 ## Workflow
 
 <table><tr><td>
-<img align="center" src="pics/02.png" title="gRPC Layer Model" width="600">
+<img align="center" src="pics/gRPC_workflow.png" title="gRPC Layer Model" width="600">
 </td></tr></table>
 
 ### 1. ProtoBuf Definitions
