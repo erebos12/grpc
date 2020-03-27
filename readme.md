@@ -65,12 +65,23 @@ The ProtoBuf Definitions (`.proto` files) needs now to be compiled into your tar
 
 Download and install from https://github.com/protocolbuffers/protobuf/releases.
 
-After download and unpacking zip-file to your preferred location, create a link:
 ```
-// creating a softlink
-$ ln -s /usr/local/opt/protoc-3.7.1-osx-x86_64/bin/protoc protoc
-$ protoc --version
-libprotoc 3.7.1.
+# 1. Download from  https://github.com/protocolbuffers/protobuf/releases.
+# I used latest protoc-3.11.4-osx-x86_64.zip (ready-to-use binary for OSX) 
+
+# 2. create folder to store protoc files
+mkdir /usr/local/Cellar/protobuf
+cd /usr/local/Cellar/protobuf # copy protoc-3.11.4-osx-x86_64.zip in here !!! 
+
+# 2. Unpack it in folder /usr/local/Cellar/protobuf:
+unzip protoc-3.11.4-osx-x86_64.zip
+
+# 3. Create link to protoc in /usr/local/bin
+ln -s /usr/local/Cellar/bin/protobuf/bin/protoc protoc
+
+# 4. check, if you can call command 'protoc' from anywhere
+cd ~
+protoc
 ```
 
 #### Download and Install golang dependent grpc packages
