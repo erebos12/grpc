@@ -83,6 +83,20 @@ ln -s /usr/local/Cellar/bin/protobuf/bin/protoc protoc
 cd ~
 protoc
 ```
+OR
+
+##### Install docker image `znly/protoc`
+
+Create an alias (for .bashrc, .bash_profile etc.):
+```
+alias protoc='docker run --rm -v $(pwd):$(pwd) -w $(pwd) znly/protoc'
+```
+
+Call protoc with:
+```
+protoc -I=. --js_out=js_src  service.proto
+```
+
 
 #### Download and Install golang dependent grpc packages
 
