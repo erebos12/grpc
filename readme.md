@@ -28,6 +28,7 @@
 * involves an interface description language (IDL) that describes the structure of data
 * is implemented for various languages: Java, C, Go, JS etc.
 * definition of your data and services in `.proto` files
+* TIP: Use VSCode plugin for .proto files - https://marketplace.visualstudio.com/items?itemName=zxh404.vscode-proto3
 
 ```go
 // protocol buffer sysntax version
