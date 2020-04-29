@@ -61,33 +61,10 @@ service AddService {
 
 The ProtoBuf Definitions (`.proto` files) needs now to be compiled into your target language (here `golang`). Therefore we need to install the ProtoBuf compiler `protoc`.
 
-#### Download and Install Protocol Buffer Compiler (`protoc`)
+I recommend to use docker image **_znly/protoc_**:
 
-Download and install from https://github.com/protocolbuffers/protobuf/releases.
+Create alias (in .bashrc, .bash_profile etc.):
 
-```
-# 1. Download from  https://github.com/protocolbuffers/protobuf/releases.
-# I used latest protoc-3.11.4-osx-x86_64.zip (ready-to-use binary for OSX) 
-
-# 2. create folder to store protoc files
-mkdir /usr/local/Cellar/protobuf
-cd /usr/local/Cellar/protobuf # copy protoc-3.11.4-osx-x86_64.zip in here !!! 
-
-# 2. Unpack it in folder /usr/local/Cellar/protobuf:
-unzip protoc-3.11.4-osx-x86_64.zip
-
-# 3. Create link to protoc in /usr/local/bin
-ln -s /usr/local/Cellar/bin/protobuf/bin/protoc protoc
-
-# 4. check, if you can call command 'protoc' from anywhere
-cd ~
-protoc
-```
-OR
-
-##### Install docker image `znly/protoc`
-
-Create an alias (for .bashrc, .bash_profile etc.):
 ```
 alias protoc='docker run --rm -v $(pwd):$(pwd) -w $(pwd) znly/protoc'
 ```
